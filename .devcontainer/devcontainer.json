@@ -1,16 +1,11 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
-	// Uncomment if using podman
-	//"runArgs": ["--userns=keep-id"],
-	// If using podman, change type=bind to type=bind,Z
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace/${localWorkspaceFolderBasename},type=bind",
-	"workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
-
-	"onCreateCommand": "bash .devcontainer/onCreateCommand.sh",
-	"postStartCommand": "bash .devcontainer/postStartCommand.sh",
-	
+	"name": "Python 3 & PostgreSQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"postCreateCommand": "pip install --user -r requirements.txt",
 	"customizations": {
         "vscode": {
             "settings": {
@@ -18,11 +13,8 @@
             },
             "extensions": [
                 "ms-python.python",
-				"ms-python.vscode-pylance",
-                "mtxr.sqltools",
-				"mtxr.sqltools-driver-pg",
                 "cweijan.vscode-database-client2",
-				"rangav.vscode-thunder-client"
+		"rangav.vscode-thunder-client"
             ]
         }
     }
